@@ -1,3 +1,0 @@
-C:/Users/hunte/OneDrive/Desktop/School/Computer Science/CS120/Final-Project-hdutton/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/hunte/OneDrive/Desktop/School/Computer Science/CS120/Final-Project-hdutton/cmake-build-debug/CMakeFiles/Final_Project_hdutton.dir
-C:/Users/hunte/OneDrive/Desktop/School/Computer Science/CS120/Final-Project-hdutton/cmake-build-debug/CMakeFiles/rebuild_cache.dir
