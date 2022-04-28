@@ -1,0 +1,4 @@
+"C:\Users\hunte\CLion 2021.2.1\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_DEPENDS_USE_COMPILER=FALSE -G "CodeBlocks - MinGW Makefiles" "C:\Users\hunte\OneDrive\Desktop\School\Computer Science\CS120\Final-Project-hdutton"
+-- Configuring done
+-- Generating done
+-- Build files have been written to: C:/Users/hunte/OneDrive/Desktop/School/Computer Science/CS120/Final-Project-hdutton/cmake-build-debug
