@@ -5,6 +5,7 @@
 # Run "py -m pip install mysql-connector-python" in CLI
 import mysql.connector
 import sys
+import os
 
 # Connect to WebDB database
 facultyDb = mysql.connector.connect(
@@ -79,34 +80,61 @@ elif sys.argv[1] == "printTA":
 # Search for faculty members by department
 elif sys.argv[1] == "searchDep":
     department = sys.argv[2]
-    if sys.argv[3] == "all":
-        sql_statement = "SELECT firstName, lastName FROM tblProfessorList, tblAdminList, tblTAList " 
-        + "WHERE department = %s;"
+    sql_statement = "SELECT firstName, lastName FROM tblProfessorList"\
+        + " WHERE department = %s;"
     departmentList = (department,)
     cursor.execute(sql_statement, departmentList)
     hasNames = False
     for nameTuple in cursor:
+        print("Professors:")
         for names in nameTuple:
             print(names, end = ' ')
         print("\n")
         hasNames = True
     if hasNames == False:
-        print("No faculty members found in this department.")
+        print("No Professors found in this department.")
+    sql_statement = "SELECT firstName, lastName FROM tblAdminList"\
+        + " WHERE department = %s;"
+    departmentList = (department,)
+    cursor.execute(sql_statement, departmentList)
+    hasNames = False
+    for nameTuple in cursor:
+        print("Administrators:")
+        for names in nameTuple:
+            print(names, end = ' ')
+        print("\n")
+        hasNames = True
+    if hasNames == False:
+        print("No Administrators found in this department.")
+    sql_statement = "SELECT firstName, lastName FROM tblTAList"\
+        + " WHERE department = %s;"
+    departmentList = (department,)
+    cursor.execute(sql_statement, departmentList)
+    hasNames = False
+    for nameTuple in cursor:
+        print("TAs:")
+        for names in nameTuple:
+            print(names, end = ' ')
+        print("\n")
+        hasNames = True
+    if hasNames == False:
+        print("No TAs found in this department.")
 
 # Search for faculty members by first and last name
 elif sys.argv[1] == "searchName":
     firstNameSearch = sys.argv[2]
     lastNameSearch = sys.argv[3]
     countStatement = "SELECT COUNT(*) FROM tblProfessorList WHERE firstName = %s AND lastName = %s;"
-    names = (firstNameRemove, lastNameRemove)
+    names = (firstNameSearch, lastNameSearch)
     cursor.execute(countStatement, names)
-    numberDeletions = cursor.fetchone()
-    if numberDeletions > 0:
+    numberSearch = cursor.fetchone()
+    if numberSearch[0] > 0:
         sql_statement = "SELECT * FROM tblProfessorList WHERE firstName = %s AND lastName = %s;"
         searchNames = (firstNameSearch, lastNameSearch)
         cursor.execute(sql_statement, searchNames)
         statusSearch = "Professor"
         hasNames = False
+        print("Professors:")
         for nameTuple in cursor:
             fn = nameTuple[0]
             ln = nameTuple[1]
@@ -117,17 +145,20 @@ elif sys.argv[1] == "searchName":
             print(fn, ln + ",", dep+ ",", email, "-", offBuild, offNum, "-", statusSearch)
             hasNames = True
         if hasNames == False:
-            print("No faculty members found with this name.")
+            print("No Professors found with this name.")
+    else:
+        print("No Professors found with this name.")
     countStatement = "SELECT COUNT(*) FROM tblAdminList WHERE firstName = %s AND lastName = %s;"
-    names = (firstNameRemove, lastNameRemove)
+    names = (firstNameSearch, lastNameSearch)
     cursor.execute(countStatement, names)
-    numberDeletions = cursor.fetchone()
-    if numberDeletions > 0:
+    numberSearch = cursor.fetchone()
+    if numberSearch[0] > 0:
         sql_statement = "SELECT * FROM tblAdminList WHERE firstName = %s AND lastName = %s;"
         searchNames = (firstNameSearch, lastNameSearch)
         cursor.execute(sql_statement, searchNames)
         statusSearch = "Administrator"
         hasNames = False
+        print("Administrators:")
         for nameTuple in cursor:
             fn = nameTuple[0]
             ln = nameTuple[1]
@@ -138,17 +169,20 @@ elif sys.argv[1] == "searchName":
             print(fn, ln + ",", dep+ ",", email, "-", offBuild, offNum, "-", statusSearch)
             hasNames = True
         if hasNames == False:
-            print("No faculty members found with this name.")
+            print("No Administrators found with this name.")
+    else:
+        print("No Administrators found with this name.")
     countStatement = "SELECT COUNT(*) FROM tblTAList WHERE firstName = %s AND lastName = %s;"
-    names = (firstNameRemove, lastNameRemove)
+    names = (firstNameSearch, lastNameSearch)
     cursor.execute(countStatement, names)
-    numberDeletions = cursor.fetchone()
-    if numberDeletions > 0:
+    numberSearch = cursor.fetchone()
+    if numberSearch[0] > 0:
         sql_statement = "SELECT * FROM tblTAList WHERE firstName = %s AND lastName = %s;"
         searchNames = (firstNameSearch, lastNameSearch)
         cursor.execute(sql_statement, searchNames)
         statusSearch = "TA"
         hasNames = False
+        print("TAs:")
         for nameTuple in cursor:
             fn = nameTuple[0]
             ln = nameTuple[1]
@@ -162,7 +196,9 @@ elif sys.argv[1] == "searchName":
             print(fn, ln + ",", dep+ ",", email, "-", statusSearch, "-", graderString)
             hasNames = True
         if hasNames == False:
-            print("No faculty members found with this name.")
+            print("No TA members found with this name.")
+    else:
+        print("No TA members were found with this name.")
 
 # Add member 
 elif sys.argv[1] == "addMember":
@@ -234,21 +270,21 @@ elif sys.argv[1] == "removeMember":
     
 # Update local Faculty vectors
 elif sys.argv[1] == "updateVectors":
-    professorList = open("professorList.txt", "w")
+    professorList = open("../professorList.txt", "w")
     cursor.execute("SELECT * FROM tblProfessorList;")
     profResults = cursor.fetchall()
     for prof in profResults:
         printStatement = prof[0] + " " + prof[1] + " " + prof[2] + " " + prof[3] + " " + prof[4] + " " + str(prof[5]) + "\n"
         professorList.write(printStatement)
     professorList.close()
-    adminList = open("adminList.txt", "w")
+    adminList = open("../adminList.txt", "w")
     cursor.execute("SELECT * FROM tblAdminList")
     adminResults = cursor.fetchall()
     for admin in adminResults:
         printStatement = admin[0] + " " + admin[1] + " " + admin[2] + " " + admin[3] + " " + admin[4] + " " + str(admin[5]) + "\n"
         adminList.write(printStatement)
     adminList.close()
-    TAList = open("TAList.txt", "w")
+    TAList = open("../TAList.txt", "w")
     cursor.execute("SELECT * FROM tblTAList")
     TAResults = cursor.fetchall()
     for TA in TAResults:
