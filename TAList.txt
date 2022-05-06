@@ -1,1 +1,3 @@
-John Doe Mathematics jdoe@uvm.edu 0
+Hunter Dutton Computer-Science hdutton@uvm.edu 0
+Johnny Appleseed English jappleseed@uvm.edu 1
+John Doe Statistics jdoe@uvm.edu 1
