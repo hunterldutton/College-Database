@@ -39,4 +39,4 @@ and run without, the program has definite utility
 in the real world, and I believe it is complex
 enough to qualify as a final project.
 
-### [Video Demo](https://uvmoffice-my.sharepoint.com/:v:/g/personal/hdutton_uvm_edu/EaY9a2e8Z_9Pq6QLYwoS9aUBr68ZdUa047cDgGlrs1Kbag?e=NcsRQa)
+### [Video Demo](https://uvmoffice-my.sharepoint.com/:v:/g/personal/hdutton_uvm_edu/EaY9a2e8Z_9Pq6QLYwoS9aUBr68ZdUa047cDgGlrs1Kbag?e=huk5uE)
