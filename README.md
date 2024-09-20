@@ -7,6 +7,8 @@ Members are split into three tables: Professors, Administrators,
 and TAs. C++ will pass command line arguments to the Python file,
 which determines and runs the correct SQL statements. Additionally, 
 a website frontend displays the up-to-date database tables.
+
+#### NOTE: Website frontend is unfortunately no longer operational due to UVM-run hosting being disabled after graduation :/
 #### [Website Link](https://hdutton.w3.uvm.edu/cs120-final/facultyDisplay.php)
 
 ### Concepts from Class:
