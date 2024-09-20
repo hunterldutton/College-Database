@@ -8,8 +8,8 @@ and TAs. C++ will pass command line arguments to the Python file,
 which determines and runs the correct SQL statements. Additionally, 
 a website frontend displays the up-to-date database tables.
 
-#### NOTE: Website frontend is unfortunately no longer operational due to UVM-run hosting being disabled after graduation :/
-#### [https://hdutton.w3.uvm.edu/cs120-final/facultyDisplay.php](https://hdutton.w3.uvm.edu/cs120-final/facultyDisplay.php)
+#### PLEASE NOTE: Website frontend is unfortunately no longer operational due to UVM-run hosting being disabled after graduation :/
+[https://hdutton.w3.uvm.edu/cs120-final/facultyDisplay.php](https://hdutton.w3.uvm.edu/cs120-final/facultyDisplay.php)
 
 ### Concepts from Class:
 In my program, I used concepts from Module 2 and Module 3.
